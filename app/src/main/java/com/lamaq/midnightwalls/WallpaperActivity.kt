@@ -1,29 +1,21 @@
 package com.lamaq.midnightwalls
 
 import android.app.WallpaperManager
-import android.content.ContentUris
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.net.Uri
 import android.os.Bundle
 import android.os.StrictMode
 import android.os.StrictMode.ThreadPolicy
-import android.provider.MediaStore
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.net.toUri
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.target.Target.SIZE_ORIGINAL
 import java.io.IOException
 import java.io.InputStream
 import java.net.HttpURLConnection
-import java.net.URI
 import java.net.URL
 
 
@@ -33,21 +25,16 @@ class WallpaperActivity : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN)
+            WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER,
+            WindowManager.LayoutParams.FLAG_SHOW_WALLPAPER)
         supportActionBar?.hide()
 
         setContentView(R.layout.wallpaper_activity)
 
-        val imageView: ImageView = findViewById(R.id.imageView)
         val intent: Intent = intent
         wallpaperUrl = intent.getStringExtra("image").toString()
 
-        Glide.with(this)
-            .load(wallpaperUrl)
-            .fitCenter()
-            .into(imageView)
-
+        Glide.with(this).load(wallpaperUrl).into(findViewById(R.id.imageView))
 
         val button: Button = findViewById(R.id.button)
         button.setOnClickListener {
