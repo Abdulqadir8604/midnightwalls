@@ -1,5 +1,7 @@
 package com.lamaq.midnightwalls
 
+import android.content.pm.ActivityInfo
+import android.graphics.Color
 import android.os.Bundle
 import android.util.DisplayMetrics
 import android.widget.ProgressBar
@@ -22,6 +24,8 @@ class MainActivity : AppCompatActivity() {
 
         val displayMetrics = DisplayMetrics()
         windowManager.defaultDisplay.getMetrics(displayMetrics)
+
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         val mLayoutManager = GridLayoutManager(this, 2)
         recyclerView.layoutManager = mLayoutManager
